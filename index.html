@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Chef Jeff Kitchen™</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f1e7;
+      color: #30251f;
+      line-height: 1.6;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(248, 241, 231, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e4d6c5;
+      padding: 15px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: #30251f;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 0.9rem;
+    }
+
+    nav a:hover {
+      color: #9b5c32;
+    }
+
+    .hero {
+      min-height: 75vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 7%;
+      background:
+        radial-gradient(circle at top left, #ead1b7, transparent 35%),
+        radial-gradient(circle at bottom right, #d9b99b, transparent 35%),
+        #f8f1e7;
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .chef-icon {
+      font-size: 4rem;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 9vw, 6.5rem);
+      line-height: 0.95;
+      margin-bottom: 20px;
+      letter-spacing: -4px;
+    }
+
+    .hero h1 span {
+      color: #9b5c32;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: auto;
+      color: #66564b;
+    }
+
+    .tagline {
+      margin-top: 25px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+    }
+
+    section {
+      padding: 80px 7%;
+    }
+
+    .section-title {
+      margin-bottom: 35px;
+    }
+
+    .section-title small {
+      color: #9b5c32;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: bold;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      margin-top: 5px;
+    }
+
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 22px;
+    }
+
+    .recipe-card {
+      background: #fffaf4;
+      border: 1px solid #e6d8c8;
+      border-radius: 22px;
+      padding: 25px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .recipe-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 30px rgba(73, 45, 25, 0.1);
+    }
+
+    .food-image {
+      height: 170px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #d8b28c, #f0dfc8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4.5rem;
+      margin-bottom: 20px;
+    }
+
+    .recipe-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 8px;
+    }
+
+    .recipe-card p {
+      color: #6f6258;
+      font-size: 0.95rem;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 5px 10px;
+      border-radius: 20px;
+      background: #ead8c5;
+      color: #744325;
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+
+    .diary {
+      background: #30251f;
+      color: #fff8ef;
+    }
+
+    .diary .section-title small {
+      color: #e1b58e;
+    }
+
+    .diary-card {
+      background: #40332b;
+      border-radius: 20px;
+      padding: 25px;
+      border: 1px solid #57463a;
+    }
+
+    .diary-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .diary-card p {
+      color: #d8ccc2;
+    }
+
+    .about {
+      max-width: 850px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .about p {
+      color: #66564b;
+      font-size: 1.1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 7%;
+      background: #211a16;
+      color: #cfc2b7;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        padding: 14px 5%;
+      }
+
+      nav a {
+        margin-left: 10px;
+        font-size: 0.75rem;
+      }
+
+      section {
+        padding: 60px 5%;
+      }
+
+      .hero {
+        min-height: 70vh;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">🧑‍🍳 Chef Jeff</div>
+
+    <div>
+      <a href="#recipes">Recipes</a>
+      <a href="#diary">Diary</a>
+      <a href="#about">About</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+
+    <div class="hero-content">
+
+      <div class="chef-icon">🧑‍🍳</div>
+
+      <h1>
+        Chef Jeff<br>
+        <span>Kitchen™</span>
+      </h1>
+
+      <p>
+        Welcome to my little corner of the internet —
+        where rice gets experimented on, onions are basically mandatory,
+        and sometimes dinner happens because I'm too lazy to cook anything complicated.
+      </p>
+
+      <div class="tagline">
+        Rice • Recipes • Randomness
+      </div>
+
+    </div>
+
+  </header>
+
+  <section id="recipes">
+
+    <div class="section-title">
+      <small>From my kitchen</small>
+      <h2>The Recipe Corner 🍚</h2>
+    </div>
+
+    <div class="recipe-grid">
+
+      <div class="recipe-card">
+
+        <div class="food-image">
+          🥔🍚🍳
+        </div>
+
+        <h3>Creamy Mashed-Potato Rice</h3>
+
+        <p>
+          Rice with a creamy mashed-potato twist,
+          served with scrambled eggs.
+          One of the experiments that actually went HARD.
+        </p>
+
+        <span class="tag">Chef Jeff Experiment</span>
+
+      </div>
+
+      <div class="recipe-card">
+
+        <div class="food-image">
+          🍚🥕🧅
+        </div>
+
+        <h3>Chef Jeff Fried Rice</h3>
+
+        <p>
+          The classified one.
+          Rice, vegetables, onions and whatever else
+          Chef Jeff decided belonged in the pan that day.
+        </p>
+
+        <span class="tag">CLASSIFIED 🤫</span>
+
+      </div>
+
+      <div class="recipe-card">
+
+        <div class="food-image">
+          🍛
+        </div>
+
+        <h3>Biryani</h3>
+
+        <p>
+          Coming soon to the Chef Jeff Kitchen.
+          A proper Swahili-coast inspired kitchen mission.
+        </p>
+
+        <span class="tag">Coming Soon</span>
+
+      </div>
+
+      <div class="recipe-card">
+
+        <div class="food-image">
+          🍛🌶️
+        </div>
+
+        <h3>Pilau</h3>
+
+        <p>
+          Another coastal classic waiting for its
+          official Chef Jeff treatment.
+        </p>
+
+        <span class="tag">Coming Soon</span>
+
+      </div>
+
+      <div class="recipe-card">
+
+        <div class="food-image">
+          🥛🍪
+        </div>
+
+        <h3>Oreo-Cerelac Milk</h3>
+
+        <p>
+          Warm milk, Cerelac and crushed Oreos.
+          The official Going-Out Drink™ might have just been born.
+        </p>
+
+        <span class="tag">Night Vigil Special</span>
+
+      </div>
+
+      <div class="recipe-card">
+
+        <div class="food-image">
+          🍠🍟
+        </div>
+
+        <h3>Sweet Potato Fries</h3>
+
+        <p>
+          A future side quest.
+          Crispy, simple and potentially dangerous
+          if Chef Jeff gets carried away.
+        </p>
+
+        <span class="tag">Side Quest</span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="diary" class="diary">
+
+    <div class="section-title">
+      <small>Little moments</small>
+      <h2>Kitchen Diary 📖</h2>
+    </div>
+
+    <div class="recipe-grid">
+
+      <div class="diary-card">
+
+        <h3>🍳 The Lazy Dinner</h3>
+
+        <p>
+          Sometimes you have a night vigil later and
+          you simply don't have the energy for a complicated meal.
+          Rice + scrambled eggs = problem solved.
+        </p>
+
+      </div>
+
+      <div class="diary-card">
+
+        <h3>🥛 The Oreo Experiment</h3>
+
+        <p>
+          Warm milk. Cerelac. Two Oreos.
+          No extra sugar because the Cerelac already has enough.
+          Chef Jeff science.
+        </p>
+
+      </div>
+
+      <div class="diary-card">
+
+        <h3>🧅 Onion Appreciation Society</h3>
+
+        <p>
+          Onions are not optional.
+          They belong in the kitchen.
+          They belong in the pan.
+          They belong in the story.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="about">
+
+    <div class="about">
+
+      <div class="section-title">
+        <small>Why this exists</small>
+        <h2>It's not really about the food.</h2>
+      </div>
+
+      <p>
+        Chef Jeff Kitchen is my little digital archive of life —
+        the meals I make, the random experiments I try,
+        the things that work, the things that absolutely don't,
+        and the small moments I want to remember.
+      </p>
+
+      <br>
+
+      <p>
+        No pressure. No perfect recipes.
+        Just me living, cooking and documenting the journey.
+      </p>
+
+    </div>
+
+  </section>
+
+  <footer>
+
+    <p>
+      Made with 🧑‍🍳🍚 by <strong>Chef Jeff</strong>
+    </p>
+
+    <p>
+      Chef Jeff's Core™
+    </p>
+
+  </footer>
+
+</body>
+</html>
